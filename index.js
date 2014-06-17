@@ -25,7 +25,8 @@ exports = module.exports = function (since, until, opts) {
         var m;
         if (m = /^commit\s+(\S+)/i.exec(line)) {
             if (commit) this.emit('data', commit);
-            commit = { hash : line.split(/\s+/)[1] };
+            var hashes = line.split(/\s+/);
+            commit = { hash : hashes[1], parents : hashes.slice(2) };
         }
         else if (m = /^Author:\s+(.+?)(?: <([^>]+)>)?$/i.exec(line)) {
             commit.author = {
