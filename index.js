@@ -71,7 +71,7 @@ function history (since, until, opts) {
     }
     else {
         return run('git',
-            [ 'log', (since || '') + '..' + (until || '') ],
+            [ 'log', (since || '') + '..' + (until || ''), '--parents'],
             opts
         );
     }
